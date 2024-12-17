@@ -10,6 +10,8 @@ const userSchema = new mongoose.Schema({
   mobileNumber: String,
   ttNumber: String,
   photo: String,
+  dlFrontPhoto: String,
+  dlBackPhoto: String,
   scores: {
     preTestScore: Number,
     postTestScore: Number,

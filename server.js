@@ -4,10 +4,18 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-const app = express();  
+const app = express();
+
+// CORS configuration
 app.use(cors({
-  origin: 'https://driverassesmenttest.netlify.app' // Specific frontend URL allow
+  origin: ['https://driverassesmenttest.netlify.app', 'http://localhost:5173'], // Allow both origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow necessary methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
 }));
+
+// Preflight request handling
+app.options('*', cors()); // Enable CORS for OPTIONS method
+
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 5000;
@@ -23,6 +31,5 @@ app.get('/', (req, res) => {
 
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
-
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
