@@ -22,6 +22,18 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Fetch all users
+router.get('/', async (req, res) => {
+  try {
+    const users = await User.find(); // Fetch all users
+    res.status(200).json({ success: true, data: users });
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ success: false, message: "An internal server error occurred" });
+  }
+});
+
+
 // Fetch user data by ID
 router.get('/:id', validateObjectId, async (req, res) => {
   try {

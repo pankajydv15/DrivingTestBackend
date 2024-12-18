@@ -32,4 +32,8 @@ app.get('/', (req, res) => {
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
 
+// const progressReportRoutes = require('./routes/progressReport');
+// app.use('/api/progress-report', progressReportRoutes);
+
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
