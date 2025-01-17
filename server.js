@@ -9,7 +9,7 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-  origin: ['https://driverassesmenttest.netlify.app', 'http://localhost:5173', 'http://localhost:5000'], // Allow both origins
+  origin: ['https://driverassesmenttest.netlify.app', 'http://localhost:5173'], // Allow both origins
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow necessary methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
 }));
