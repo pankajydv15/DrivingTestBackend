@@ -18,8 +18,10 @@ router.post('/', async (req, res) => {
   try {
     const user = new User(req.body);
     await user.save();
+    console.log("User created successfully:", user);
     res.status(201).json({ message: "User saved successfully", user });
   } catch (error) {
+    console.error("Error saving user:", error);
     res.status(500).json({ message: "Error saving user", error });
   }
 });
