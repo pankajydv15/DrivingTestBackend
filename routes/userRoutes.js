@@ -1,6 +1,8 @@
 const express = require('express');
 const User = require('../models/User');
 const mongoose = require('mongoose');
+const ProgressReport = require('../models/ProgressReport');
+
 
 const router = express.Router();
 
@@ -77,5 +79,26 @@ router.post('/scores/save', async (req, res) => {
     res.status(500).json({ message: "Error saving scores", error });
   }
 });
+
+router.post("/progress-report", async (req, res) => {
+  const { scores, userDetails, totalScore, result } = req.body;
+
+  try {
+    // Save the report data to your database (MongoDB, etc.)
+    const report = new ProgressReport({
+      scores,
+      userDetails,
+      totalScore,
+      result,
+    });
+
+    await report.save();
+    res.status(200).json({ message: "Report saved successfully" });
+  } catch (error) {
+    console.error("Error saving report:", error);
+    res.status(500).json({ message: "Error saving report" });
+  }
+});
+
 
 module.exports = router;

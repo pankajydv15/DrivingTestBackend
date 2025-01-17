@@ -2,13 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+// const progressReportRoutes = require('./routes/progressReport');
 require('dotenv').config();
 
 const app = express();
 
 // CORS configuration
 app.use(cors({
-  origin: ['https://driverassesmenttest.netlify.app', 'http://localhost:5173'], // Allow both origins
+  origin: ['https://driverassesmenttest.netlify.app', 'http://localhost:5173', 'http://localhost:5000'], // Allow both origins
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow necessary methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
 }));
@@ -32,8 +33,8 @@ app.get('/', (req, res) => {
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
 
-// const progressReportRoutes = require('./routes/progressReport');
-// app.use('/api/progress-report', progressReportRoutes);
+const progressReportRoutes = require('./routes/progressReport');
+app.use('/api', progressReportRoutes);
 
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
